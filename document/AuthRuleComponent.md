@@ -1,11 +1,8 @@
-# Cake-AuthRules 权限控制组件
+# Cake-AuthRule 权限控制组件
 基于CakePHP 3.6 基于 action 的 基本权限控制组件
 
 ## 开始使用
 
-### 克隆项目
-
-`git clone git@github.com:JZaaa/Cake-AuthRules.git`
 
 ### 使用
 
