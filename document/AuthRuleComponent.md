@@ -1,5 +1,5 @@
-# Cake-AuthRule 权限控制组件
-基于CakePHP 3.6 基于 action 的 基本权限控制组件
+# AuthRule 权限控制组件
+CakePHP 3.6 基于 action 的 基本权限控制组件
 
 ## 开始使用
 
@@ -7,9 +7,9 @@
 ### 使用
 
 
-**插件引入**
+**组件引入**
 
-复制本项目 `Component` 文件夹至 `src/Controller` 下
+复制 `AuthRuleComponent.php` 文件至CakePHP项目 `src/Controller/Component` 下
 
 **添加数据表**
 
