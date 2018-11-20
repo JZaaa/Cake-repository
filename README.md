@@ -22,7 +22,9 @@ CakePHP 3.x 的自用版仓库
 
  - [action级别的auth权限控制组件](./document/AuthRuleComponent.md)
  
- - [不启用url rewrite时，Auth权限控制组件](./document/SimpleAuthComponent.md)
+ - ~~[不启用url rewrite时，Auth权限控制组件](./document/SimpleAuthComponent.md)~~(已弃用)
+
+ - [基于 easyWeChat 3.x 的 CakePHP 3.x 微信组件](./document/WeChatComponent.md)
  
  
 ## 封装类

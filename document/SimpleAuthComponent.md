@@ -1,6 +1,8 @@
 # SimpleAuthComponent 权限控制组件
 
-该组件基于CakePHP 3.6 Auth组件修改，用于在无法使用Url Rewrite情况下原Auth组件的替代
+# 该组件已弃用,请使用原auth组件并配置``session.cookie_domain``
+
+~~该组件基于CakePHP 3.6 Auth组件修改，用于在无法使用Url Rewrite情况下原Auth组件的替代~~
 
 ## 使用
 
