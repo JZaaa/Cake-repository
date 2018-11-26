@@ -1,5 +1,6 @@
 <?php
 /**
+ * 基于EasyWeChat 封装CakePHP 3.x 组件
  * Created by PhpStorm.
  * User: jzaaa
  * Date: 2018/11/20
@@ -12,6 +13,7 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Core\Exception\Exception;
 use EasyWeChat\Foundation\Application;
+use Symfony\Component\HttpFoundation\Response;
 
 class WeChatComponent extends Component
 {
@@ -46,24 +48,45 @@ class WeChatComponent extends Component
             'file' => LOGS . 'wechat.log',
         ],
 
+        /**
+         * OAuth 配置
+         *
+         * scopes：公众平台（snsapi_userinfo / snsapi_base），开放平台：snsapi_login
+         * callback：OAuth授权完成后的回调页地址
+         */
+        'oauth' => [
+            'scopes'   => ['snsapi_userinfo'],
+            'callback' => '/admin/welcome/callauth'
+        ],
+
     ];
 
     protected $_config = [];
+
 
     /**
      * @var Application
      */
     private static $_app;
 
+
     public function initialize(array $config = [])
     {
-        $this->_checkOptions();
     }
+
+
+    public function implementedEvents()
+    {
+        return [
+            'Controller.initialize' => 'checkOptions'
+        ];
+    }
+
 
     /**
      * 检查基本配置是否合法
      */
-    protected function _checkOptions()
+    public function checkOptions()
     {
         $required = [
             'app_id', 'secret', 'token'
@@ -92,6 +115,10 @@ class WeChatComponent extends Component
     }
 
 
+    /**
+     * 返回初始化实例
+     * @return Application
+     */
     public function getApp()
     {
         return $this->_getApp();
@@ -116,6 +143,133 @@ class WeChatComponent extends Component
         }
 
     }
+
+    /**
+     * @param Response $response
+     */
+    protected function _response(Response $response)
+    {
+        $response->send();
+
+        die();
+    }
+
+
+
+    /**
+     * 服务端验证
+     * @throws \EasyWeChat\Server\BadRequestException
+     */
+    public function validator()
+    {
+        $response = $this->_getApp()->server->serve();
+
+        $this->_response($response);
+    }
+
+    /**
+     * 获取用户实例
+     * @return \EasyWeChat\User\User
+     */
+    protected function _getUserService()
+    {
+        return $this->_getApp()->user;
+    }
+
+
+    /**
+     * 获取用户信息
+     * @param $openId array|string
+     * @return \EasyWeChat\Support\Collection|null
+     */
+    public function getUser($openId)
+    {
+        if (!empty($openId)) {
+            $userService = $this->_getUserService();
+            if (is_array($openId)) {
+                return $userService->batchGet($openId);
+            }
+
+            if (is_string($openId)) {
+                return $userService->get($openId);
+            }
+        }
+
+        return null;
+
+    }
+
+
+    /**
+     * 获取用户列表
+     * @param null|string $nextOpenId
+     * @return \EasyWeChat\Support\Collection
+     */
+    public function getUserList($nextOpenId = null)
+    {
+        $userService = $this->_getUserService();
+
+        return $userService->lists($nextOpenId);
+
+    }
+
+    /**
+     * 获取菜单实例
+     * @return \EasyWeChat\Menu\Menu
+     */
+    protected function _getMenu()
+    {
+        return $this->_getApp()->menu;
+    }
+
+    /**
+     * 查询菜单
+     * @param $type mixed 1为查询菜单，非1为自定义菜单
+     * @return \EasyWeChat\Support\Collection
+     */
+    public function getMenus($type = 1)
+    {
+        if ($type === 1) {
+            return $this->_getMenu()->all();
+        }
+        return $this->_getMenu()->current();
+    }
+
+
+    /**
+     * 添加菜单
+     * @param $button
+     * @param array $matchRule
+     * @return \EasyWeChat\Support\Collection
+     */
+    public function addMenu($button, $matchRule = [])
+    {
+        return $this->_getMenu()->add($button, $matchRule);
+
+    }
+
+    /**
+     * Oauth 网页授权
+     */
+    public function oauth()
+    {
+        $response = $this->_getApp()->oauth
+            ->scopes($this->_config['oauth']['scopes'])
+            ->redirect();
+
+        $this->_response($response);
+    }
+
+
+    /**
+     * 获取Oauth 授权结果用户信息
+     * @return \Overtrue\Socialite\Providers\WeChatProvider|\Overtrue\Socialite\User
+     */
+    public function getOauthUser()
+    {
+        return $this->_getApp()->oauth->user();
+    }
+
 
 
 }

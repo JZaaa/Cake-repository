@@ -67,4 +67,35 @@ $server = $this->WeChat->getApp();
 $server = $this->WeChat->__get('server');
 ````
 
+### 函数方法
+````
+// 服务端验证
+$this->WeChat->validator();
+
+// 根据openId获取用户信息
+$this->WeChat->getUser($openId);
+
+// 获取用户列表
+// @param null|string $nextOpenId 下一个OpenId
+$this->WeChat->getUserList($nextOpenId);
+
+// 查询菜单
+// @param $type mixed 1为查询菜单，非1为自定义菜单
+$this->WeChat->getMenus($type);
+
+// 添加菜单
+// @param $button 菜单配置
+// @param array $matchRule 规则匹配
+$this->WeChat->addMenu($button, $matchRule);
+
+// Oauth 网页授权
+$this->WeChat->oauth();
+
+// 获取Oauth 授权结果用户信息 ,在oauth.callback对应的action使用
+$this->WeChat->getOauthUser();
+
+
+
+````
+
 更多示例完善中...
