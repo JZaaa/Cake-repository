@@ -55,7 +55,7 @@ class WeChatComponent extends Component
          * callback：OAuth授权完成后的回调页地址
          */
         'oauth' => [
-            'scopes'   => ['snsapi_userinfo'],
+            'scopes' => ['snsapi_userinfo'],
             'callback' => '/admin/welcome/callauth'
         ],
 
@@ -155,7 +155,6 @@ class WeChatComponent extends Component
     }
 
 
-
     /**
      * 服务端验证
      * @throws \EasyWeChat\Server\BadRequestException
@@ -246,6 +245,26 @@ class WeChatComponent extends Component
     {
         return $this->_getMenu()->add($button, $matchRule);
 
+    }
+
+
+    /**
+     * 发送模板消息
+     * @param $openID string
+     * @param $tplID string 模板id
+     * @param $data array 消息内容
+     * @param null $url 跳转链接
+     * @return \EasyWeChat\Support\Collection
+     * @throws \EasyWeChat\Core\Exceptions\InvalidArgumentException
+     */
+    public function sendTpl($openID, $tplID, $data, $url = null)
+    {
+        return $this->_getApp()->notice->send([
+            'touser' => $openID,
+            'template_id' => $tplID,
+            'url' => $url,
+            'data' => $data
+        ]);
     }
 
     /**

@@ -94,6 +94,15 @@ $this->WeChat->oauth();
 // 获取Oauth 授权结果用户信息 ,在oauth.callback对应的action使用
 $this->WeChat->getOauthUser();
 
+/**
+* 发送模板消息
+* @param $openID string
+* @param $tplID string 模板id
+* @param $data array 消息内容
+* @param null $url 跳转链接
+*/
+$this->WeChat->sendTpl($openID, $tplID, $data, $url);
+
 
 
 ````
