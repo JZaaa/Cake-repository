@@ -6,6 +6,7 @@ CakePHP 3.x 的自用版仓库
 
 ````
 /Behavior  /* 自定义行为组件，放在 /src/Model/Behavior 下 */
+/Rule /* 自定义验证组件，放在 /src/Model/Rule 下 */
 /Component   /* 自定义组件，放在 /src/Controller 下 */
 /Lib        /* 自定义类， 放在 /src/Lib 下 */
 /docunment  /* 说明文档 */
@@ -28,6 +29,8 @@ CakePHP 3.x 的自用版仓库
  - [基于 easyWeChat 3.x 的 CakePHP 3.x 微信组件](./document/WeChatComponent.md)
  
  - [上传行为类，用于对本地文件上传的数据进行格式化](./Behavior/UploadBehavior.php)
+ 
+ - [枚举字段验证](./Rule/EnumRule.php)
 
  
 ## 封装类
