@@ -5,6 +5,7 @@ CakePHP 3.x 的自用版仓库
 ## 说明
 
 ````
+/Behavior  /* 自定义行为组件，放在 /src/Model/Behavior 下 */
 /Component   /* 自定义组件，放在 /src/Controller 下 */
 /Lib        /* 自定义类， 放在 /src/Lib 下 */
 /docunment  /* 说明文档 */
@@ -25,6 +26,8 @@ CakePHP 3.x 的自用版仓库
  - ~~[不启用url rewrite时，Auth权限控制组件](./document/SimpleAuthComponent.md)~~(已弃用)
 
  - [基于 easyWeChat 3.x 的 CakePHP 3.x 微信组件](./document/WeChatComponent.md)
+ 
+ - [上传行为类，用于对本地文件上传的数据进行格式化](./Behavior/UploadBehavior.php)
 
  
 ## 封装类
