@@ -31,6 +31,8 @@ CakePHP 3.x 的自用版仓库
  - [上传行为类，用于对本地文件上传的数据进行格式化](./Behavior/UploadBehavior.php)
  
  - [枚举字段验证](./Rule/EnumRule.php)
+ 
+ - [文件上传组件](./Lib/Upload.php)
 
  
 ## 封装类
