@@ -27,6 +27,11 @@ class EnumRule extends RulesChecker
      * @var $__options
      */
     private $__options;
+    
+    private function isBlank($value)
+    {
+        return empty($value) && !is_numeric($value);
+    }
 
     public function __invoke(EntityInterface $entity, array $options)
     {
@@ -43,7 +48,7 @@ class EnumRule extends RulesChecker
         $val = $entity->get($options['errorField']);
 
         if ($required === false) {
-            if (!isBlank($val)) {
+            if (!$this->isBlank($val)) {
                 return $this->__checkField($val);
             }
             return true;
