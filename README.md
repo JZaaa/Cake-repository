@@ -1,6 +1,6 @@
 # Cake-repository
 
-CakePHP 3.x 的自用版仓库
+CakePHP 3.x 自用相关组件
 
 ## 说明
 
@@ -23,8 +23,6 @@ CakePHP 3.x 的自用版仓库
 #### CakePHP 3.6
 
  - [action级别的auth权限控制组件](./document/AuthRuleComponent.md)
- 
- - ~~[不启用url rewrite时，Auth权限控制组件](./document/SimpleAuthComponent.md)~~(已弃用)
 
  - [基于 easyWeChat 3.x 的 CakePHP 3.x 微信组件](./document/WeChatComponent.md)
  
@@ -33,6 +31,7 @@ CakePHP 3.x 的自用版仓库
  - [枚举字段验证](./Rule/EnumRule.php)
  
  - [文件上传组件](./Lib/Upload.php)
+ - [验证码插件](https://github.com/JZaaa/CakeCaptcha)
 
  
 ## 封装类
@@ -41,3 +40,4 @@ CakePHP 3.x 的自用版仓库
 
  - [中文UTF-8转ASCII码](./document/Spliter.md) - 可用于实现全文检索
  - [CakePHP Beanstalkd 队列使用示例](./document/Beanstalkd.md)
+ - [PHP计算解析库](https://github.com/JZaaa/string-calc) - 可用于excel公式计算
