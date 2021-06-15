@@ -162,7 +162,7 @@ class Upload
             if ($type == 'image' && $this->_imageConfig) {
                 return $this->__uploadImg($path, $fileName);
             }
-            $storage = new FileSystem($path);
+            $storage = new FileSystem(WWW_ROOT . $path);
             $file = new File($fileName, $storage);
             $this->originalName = $file->getName();
 
