@@ -227,9 +227,9 @@ class Upload
         }
         $filePath = $path . '/' . uniqid() . '.' . $extension;
         try {
-            $img->save($filePath, $this->_imageConfig['quality']);
+            $img->save(WWW_ROOT . $filePath, $this->_imageConfig['quality']);
         } catch (\Exception $e) {
-            $this->msg = '上传失败';
+            $this->msg = $e->getMessage();
             return false;
         }
         $this->msg = '上传成功';
